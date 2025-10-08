@@ -100,8 +100,7 @@ echo 1024 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepag
 rm -rf build/
 sudo ./container/install_pace2.sh dev
 sudo ./container/install_qosmos.sh dev
-sudo export LD_LIBRARY_PATH=/usr/lib:/usr/lib/dpdk/pmds-25.0:$LD_LIBRARY_PATH  #Arch
-sudo export LD_LIBRARY_PATH=/usr/local/lib/pace2/lib:/usr/local/lib:$LD_LIBRARY_PATH #Arch
+export LD_LIBRARY_PATH=/usr/lib:/usr/lib/dpdk/pmds-25.0:/usr/local/lib/pace2/lib:/usr/local/lib/qosmos/:/usr/local/lib:$LD_LIBRARY_PATH # Arch
 meson setup build --wipe -Denable_dpi_qosmos=true -Denable_dpi_pace2=false      # Qosmos
 meson setup build --wipe -Denable_dpi_qosmos=false -Denable_dpi_pace2=true      # PACE2
 ninja -C build
