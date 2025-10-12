@@ -30,6 +30,14 @@ git switch -c dev remotes/origin/dev
 # Delete all local changes
 git reset --hard && git clean -fd
 
+# Delete everything local. Sync with remote
+git fetch origin
+git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+git clean -fd
+git clean -fdx
+
+
+
 # Git checkout to a specific commit
 git checkout a1b2c3d
 
