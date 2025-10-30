@@ -106,6 +106,8 @@ git lfs ls-files
 # project
 echo 1024 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
 rm -rf build/
+sudo apt install libpq-dev
+sudo apt install libprotobuf-c-dev protobuf-c-compiler
 sudo ./container/install_pace2.sh dev
 sudo ./container/install_qosmos.sh dev
 export LD_LIBRARY_PATH=/usr/lib:/usr/lib/dpdk/pmds-25.0:/usr/local/lib/pace2/lib:/usr/local/lib/qosmos/:/usr/local/lib:$LD_LIBRARY_PATH # Arch
