@@ -116,3 +116,19 @@ meson setup build --wipe -Denable_dpi_qosmos=false -Denable_dpi_pace2=true      
 meson setup build --wipe -Denable_dpi_qosmos=false -Denable_dpi_pace2=true -Dwerror=false # PACE2
 ninja -C build
 sudo ./build/project
+
+
+# Clear git user settings
+# List
+git config --global --list
+# Unsed
+git config --global --unset user.name
+git config --global --unset user.email
+rm ~/.gitconfig
+# Set
+git config --global user.email "Usman.Pervez@31c.io"
+git config --global user.name "Usman Pervez"
+ssh -T git@git.corp.31c.io
+# Passphrase
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
