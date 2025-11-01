@@ -116,6 +116,7 @@ meson setup build --wipe -Denable_dpi_qosmos=false -Denable_dpi_pace2=true      
 meson setup build --wipe -Denable_dpi_qosmos=false -Denable_dpi_pace2=true -Dwerror=false # PACE2
 ninja -C build
 sudo ./build/project
+sudo LD_LIBRARY_PATH=/usr/local/lib ./build/project # Arch
 
 
 # Clear git user settings
