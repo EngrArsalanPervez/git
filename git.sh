@@ -1,8 +1,8 @@
 # Credentials
 git config --global credential.helper store                                    # Store credentials permanently
 
-git config --global user.email "usman.pervez@31c.io"
-git config --global user.name "Usman Pervez"
+git config --global user.email "usman.pervez10@gmail.com"
+git config --global user.name "EngrArsalanPervez"
 
 git config --global user.email "Usman.Pervez@31c.io"
 git config --global user.name "Usman Pervez"
