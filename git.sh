@@ -125,6 +125,11 @@ ninja -C build
 sudo ./build/project
 sudo LD_LIBRARY_PATH=/usr/local/lib ./build/project # Arch
 
+# Submodules
+git submodule update --init --recursive
+Username: usmanpervez
+Password: <company email>
+
 
 # Clear git user settings
 # List
