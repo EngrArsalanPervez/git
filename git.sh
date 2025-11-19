@@ -145,3 +145,7 @@ ssh -T git@git.corp.31c.io
 # Passphrase
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+
+
+# Final push after rebase when vscode is all done
+git push --force-with-lease
