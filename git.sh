@@ -149,3 +149,7 @@ ssh-add ~/.ssh/id_ed25519
 
 # Final push after rebase when vscode is all done
 git push --force-with-lease
+
+# Docker Build
+echo "username:token" > git_auth.txt
+sudo docker build --secret id=GIT_AUTH,src=git_auth.txt -t my_docker_image:1.0 .
