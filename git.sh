@@ -153,3 +153,59 @@ git push --force-with-lease
 # Docker Build
 echo "username:token" > git_auth.txt
 sudo docker build --secret id=GIT_AUTH,src=git_auth.txt -t my_docker_image:1.0 .
+
+################################################################################################################
+# Saldom Live Server
+Step1:
+cd /opt/saldem
+vim docker-compose.yml
+# Add tty: true in dpi:
+dpi:
+stop_grace_period: 0.1s
+restart: unless-stopped
+privileged: true
+tty: true
+
+Step2:
+vim dpi-image/entrypoint.sh
+#comment last command and add a new command
+
+# Launch DXI
+# exec ./build/dxi -c /etc/dxi.conf
+exec /bin/bash
+
+Step3:
+docker compose down dpi
+docker compose build dpi
+docker compose up -d dpi
+
+Step4:
+lshw -c net -businfo
+pci@0000:00:14.0 network 82574L Gigabit Network Connection
+pci@0000:00:16.0 network 82574L Gigabit Network Connection
+
+Step5:
+apt install vim
+vim /etc/dxi.conf
+
+[dpdk_args]
+l = 0-1
+iova-mode = pa
+file-prefix = dxi
+a = 0000:00:14.0
+a = 0000:00:16.0
+
+# [vdev0]
+# driver = net_pcap0
+# rx_pcap=test/input.pcap
+
+# [vdev1]
+# driver = net_pcap1
+# tx_pcap=/dev/null
+a = 0000:06:10.0
+a = 0000:06:10.1
+
+Step6:
+ninja -C build
+./build/dxi -c /etc/dxi.conf
+################################################################################################################
