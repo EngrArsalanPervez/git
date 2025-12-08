@@ -177,6 +177,7 @@ exec /bin/bash
 Step3:
 docker compose down dpi
 docker compose build dpi
+docker compose build dpi --no-cache
 docker compose up -d dpi
 
 Step4:
