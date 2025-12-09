@@ -210,3 +210,24 @@ Step6:
 ninja -C build
 ./build/dxi -c /etc/dxi.conf
 ################################################################################################################
+
+# MitmProxy
+ssh root@environment
+cd /opt
+mkdir mitm-test
+nano Dockerfile
+nano entrypoint.sh
+nano git_auth.sh
+DOCKER_BUILDKIT=1 docker build --secret id=GIT_AUTH,src=git_auth.txt --progress=plain -t mitm:test .
+docker images # mitm:test
+cd /opt/saldem
+nano docker-compose.yml
+# Go to service mp: and update image
+  #image: "mp:custom"
+  image: "mitm:test"
+docker compose down mp
+docker compose up -d mp
+docker compose exec mp sh
+su
+pwd
+echo $LD_LIBRARY_PATH
