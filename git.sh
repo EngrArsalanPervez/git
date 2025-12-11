@@ -231,3 +231,27 @@ docker compose exec mp sh
 su
 pwd
 echo $LD_LIBRARY_PATH
+
+##################################################################################################################
+# PostGres
+docker exec -it saldem-postgres-1 psql -U saldem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
