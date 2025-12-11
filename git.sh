@@ -231,11 +231,16 @@ docker compose exec mp sh
 su
 pwd
 echo $LD_LIBRARY_PATH
+##################################################################################################################
+# Docker Free Space
+docker builder prune -a
+docker image prune
 
 ##################################################################################################################
 # PostGres
 docker exec -it saldem-postgres-1 psql -U saldem
-
+\dt
+select * from policy_rule_youtube;
 
 
 
