@@ -151,9 +151,9 @@ ssh-add ~/.ssh/id_ed25519
 git push --force-with-lease
 
 # Docker Build
-echo "username:token" > git_auth.txt
+echo "usmanpervez:token" > git_auth.txt
 sudo docker build --secret id=GIT_AUTH,src=git_auth.txt -t my_docker_image:1.0 .
-
+export "usmanpervez:token"
 ################################################################################################################
 # Saldom Live Server
 Step1:
