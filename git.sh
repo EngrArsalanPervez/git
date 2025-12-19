@@ -249,7 +249,14 @@ docker login nexus.corp.31c.io
 deploy
 deploy
 docker pull nexus.corp.31c.io/docker-hosted/prod-dxi/dev:latest
-
+docker images
+nexus.corp.31c.io/docker-hosted/prod-dxi/dev                                             latest    dceb3163448b   22 hours ago     4.71GB
+nano docker-compose.yml
+dpi:
+  image: nexus.corp.31c.io/docker-hosted/prod-dxi/dev
+docker compose down dpi
+docker compose build dpi --no-cache
+docker compose up -d dpi
 
 
 
