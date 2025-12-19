@@ -243,7 +243,12 @@ docker exec -it saldem-postgres-1 psql -U saldem
 select * from policy_rule_youtube;
 
 
-
+##################################################################################################################
+# Nexus Pull
+docker login nexus.corp.31c.io
+deploy
+deploy
+docker pull nexus.corp.31c.io/docker-hosted/prod-dxi/dev:latest
 
 
 
