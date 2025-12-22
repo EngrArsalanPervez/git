@@ -239,6 +239,8 @@ docker image prune
 ##################################################################################################################
 # PostGres
 docker exec -it saldem-postgres-1 psql -U saldem
+docker exec -it 8bca8c7bac93 psql -U saldem -d saldem
+
 \dt
 select * from policy_rule_youtube;
 
