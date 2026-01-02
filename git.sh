@@ -243,6 +243,31 @@ docker exec -it 8bca8c7bac93 psql -U saldem -d saldem
 
 \dt
 select * from policy_rule_youtube;
+##################################################################################################################
+# In_File
+
+# Host Machine (Copy file to Docker)
+docker cp /opt/saldem/backend/csv/subscribers.csv saldem-postgres-1:/tmp/subscribers.csv
+
+# Go insite DB docker
+docker exec -it saldem-postgres-1 psql -U saldem
+
+# Show Tables
+\dt
+# Show Rows
+select * from files;
+# Describe Table
+\d file;
+# Describe enums
+SELECT enumlabel FROM pg_enum WHERE enumtypid = 'file_mime_type_enum'::regtype ORDER BY enumsortorder;
+SELECT enumlabel FROM pg_enum WHERE enumtypid = 'file_target_enum'::regtype ORDER BY enumsortorder;
+# Load file to DB
+\lo_import '/tmp/subscribers.csv'
+oid: 41550
+# Insert File
+INSERT INTO file (name, size, mime_type, target, oid) VALUES ('subscribers.csv', 1024, 'TEXT/CSV', 'FILTERING_SUBSCRIBERS', 41550);
+# Export file
+\lo_export 12345 '/tmp/subscribers_export.csv'
 
 
 ##################################################################################################################
