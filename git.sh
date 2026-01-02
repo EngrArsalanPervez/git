@@ -283,7 +283,7 @@ ALTER SEQUENCE file_id_seq OWNED BY file.id;
 
 \d file
 
-
+select * from file;
 
 
 
