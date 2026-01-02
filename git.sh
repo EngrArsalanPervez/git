@@ -285,7 +285,8 @@ ALTER SEQUENCE file_id_seq OWNED BY file.id;
 
 select * from file;
 
-
+export DB_DNS="host=localhost dbname=31C user=postgres"
+echo $DB_DNS
 
 ##################################################################################################################
 # PostGres
