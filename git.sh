@@ -235,6 +235,57 @@ echo $LD_LIBRARY_PATH
 # Docker Free Space
 docker builder prune -a
 docker image prune
+##################################################################################################################
+# Postgres Install
+sudo apt install postgresql postgresql-contrib
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'strong_password_here';
+sudo -u postgres createdb 31C
+sudo -u postgres psql -d "31C"
+\l
+\dt
+
+# Create table "file"
+CREATE TYPE file_mime_type_enum AS ENUM (
+    'TEXT/CSV'
+);
+
+CREATE TYPE file_target_enum AS ENUM (
+    'FILTERING_SUBSCRIBERS',
+    'FILTERING_HOSTNAMES'
+);
+CREATE SEQUENCE file_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+    
+CREATE TABLE file (
+    id         bigint NOT NULL DEFAULT nextval('file_id_seq'::regclass),
+    name       varchar(255) NOT NULL,
+    size       bigint NOT NULL,
+    mime_type  file_mime_type_enum NOT NULL,
+    target     file_target_enum,
+    oid        oid NOT NULL,
+    created_at bigint NOT NULL DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP),
+    updated_at bigint NOT NULL DEFAULT EXTRACT(epoch FROM CURRENT_TIMESTAMP),
+    CONSTRAINT file_pkey PRIMARY KEY (id),
+    CONSTRAINT file_oid_unique UNIQUE (oid)
+);
+
+CREATE INDEX file_mime_type_idx ON file USING btree (mime_type);
+CREATE INDEX file_name_idx      ON file USING btree (name);
+CREATE INDEX file_size_idx      ON file USING btree (size);
+CREATE INDEX file_target_idx    ON file USING btree (target);
+
+ALTER SEQUENCE file_id_seq OWNED BY file.id;
+
+\d file
+
+
+
+
 
 ##################################################################################################################
 # PostGres
