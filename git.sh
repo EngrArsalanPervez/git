@@ -11,12 +11,6 @@ ssh -T git@git.corp.31c.io
 # Meld
 git config --global diff.tool meld
 
-# nvim -d
-git config --global diff.tool nvimdiff
-git config --global difftool.nvimdiff.cmd "nvim -d \$LOCAL \$REMOTE"
-git config --global difftool.prompt false
-
-
 # Status
 git status
 git logs
